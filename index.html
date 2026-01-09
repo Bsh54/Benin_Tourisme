@@ -1,0 +1,1987 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Découverte  Bénin Tourisme | Agence de Tourisme Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables CSS - Palette de couleurs premium */
+        :root {
+            --gold: #D4AF37;
+            --blue: #1E6F9F;
+            --green: #2D5A27;
+            --terracotta: #B3541E;
+            --dark: #1a1a1a;
+            --light: #f9f7f2;
+            --gray: #6c757d;
+            --transition: all 0.4s ease;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --radius: 8px;
+        }
+
+        /* Mode sombre */
+        .dark-mode {
+            --dark: #f9f7f2;
+            --light: #121212;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: var(--transition);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--gold);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--gold);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.5s;
+            z-index: -1;
+        }
+
+        .btn:hover:before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--gold);
+            color: #fff;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-center h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Indicateur de progression du défilement */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(212, 175, 55, 0.1);
+            z-index: 1000;
+        }
+
+        .scroll-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), var(--terracotta));
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 20px 0;
+        }
+
+        header.scrolled {
+            background-color: rgba(249, 247, 242, 0.95);
+            box-shadow: var(--shadow);
+            padding: 15px 0;
+        }
+
+        .dark-mode header.scrolled {
+            background-color: rgba(18, 18, 18, 0.95);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .logo span {
+            color: var(--blue);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 40px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--dark);
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: 30px;
+            transition: var(--transition);
+        }
+
+        .dark-mode .theme-toggle {
+            color: var(--light);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        /* Hero section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://i.pinimg.com/1200x/76/ad/55/76ad5510319303574d51189a19bb4337.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Section Expériences */
+        .experience-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .experience-card {
+            background: var(--light);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-tag {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: var(--blue);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .card-tag.nature {
+            background-color: var(--green);
+        }
+
+        .card-tag.culture {
+            background-color: var(--terracotta);
+        }
+
+        .card-tag.history {
+            background-color: var(--gold);
+        }
+
+        /* Galerie */
+        .gallery {
+            background-color: #f5f5f5;
+        }
+
+        .dark-mode .gallery {
+            background-color: #1a1a1a;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-auto-rows: 200px;
+            grid-gap: 20px;
+            grid-auto-flow: dense;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item:nth-child(3n) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        /* Itinéraires */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto 0;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gold);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 60px;
+            position: relative;
+            width: 100%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            justify-content: flex-start;
+            padding-right: calc(50% + 30px);
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-end;
+            padding-left: calc(50% + 30px);
+        }
+
+        .timeline-content {
+            background: var(--light);
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 100%;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content:after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid var(--light);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content:after {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid var(--light);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: var(--gold);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            border: 4px solid var(--light);
+        }
+
+        /* Carte interactive */
+        .benin-map {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto 0;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Benin_%28located%29.svg/1200px-Benin_%28located%29.svg.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 500px;
+        }
+
+        .map-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--gold);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+        }
+
+        .map-point:hover {
+            animation: pulse 1.5s infinite;
+            transform: translate(-50%, -50%) scale(1.3);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+            }
+        }
+
+        .map-point.active {
+            background: var(--terracotta);
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+
+        .map-point[data-location="ouidah"] {
+            top: 60%;
+            left: 25%;
+        }
+
+        .map-point[data-location="ganvie"] {
+            top: 55%;
+            left: 40%;
+        }
+
+        .map-point[data-location="pendjari"] {
+            top: 30%;
+            left: 20%;
+        }
+
+        .map-point[data-location="abomey"] {
+            top: 50%;
+            left: 45%;
+        }
+
+        .map-point[data-location="cote"] {
+            top: 70%;
+            left: 35%;
+        }
+
+        .map-info {
+            position: absolute;
+            background: var(--light);
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 300px;
+            display: none;
+            z-index: 10;
+        }
+
+        .map-info.active {
+            display: block;
+        }
+
+        /* Témoignages */
+        .testimonials {
+            background: linear-gradient(rgba(30, 111, 159, 0.05), rgba(212, 175, 55, 0.05));
+        }
+
+        .dark-mode .testimonials {
+            background: linear-gradient(rgba(30, 111, 159, 0.1), rgba(212, 175, 55, 0.1));
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 50px auto 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius);
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            padding: 40px;
+            background: var(--light);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-rating {
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .slider-btn {
+            background: var(--gold);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-btn:hover {
+            background: var(--terracotta);
+            transform: scale(1.1);
+        }
+
+        /* Statistiques */
+        .stats {
+            background: linear-gradient(rgba(45, 90, 39, 0.9), rgba(179, 84, 30, 0.9)), url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+
+        .stats h2 {
+            color: white;
+        }
+
+        .stats h2:after {
+            background: white;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            padding: 30px;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+
+        /* Formulaire de contact */
+        .contact-form {
+            max-width: 700px;
+            margin: 50px auto 0;
+            background: var(--light);
+            padding: 50px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+
+        .form-message {
+            padding: 15px;
+            border-radius: var(--radius);
+            margin-top: 20px;
+            display: none;
+        }
+
+        .form-message.success {
+            background: rgba(45, 90, 39, 0.1);
+            color: var(--green);
+            border: 1px solid var(--green);
+            display: block;
+        }
+
+        .form-message.error {
+            background: rgba(179, 84, 30, 0.1);
+            color: var(--terracotta);
+            border: 1px solid var(--terracotta);
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #fff;
+            padding: 80px 0 30px;
+        }
+
+        .dark-mode footer {
+            background-color: #0a0a0a;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .footer-links h3 {
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+            transition: var(--transition);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--terracotta);
+            transform: translateY(-5px);
+        }
+
+        /* Modal galerie */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--gold);
+        }
+
+        /* Responsive design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .mobile-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 300px;
+                height: 100vh;
+                background: var(--light);
+                padding: 80px 40px;
+                transition: var(--transition);
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+            }
+            
+            .mobile-menu.active {
+                right: 0;
+            }
+            
+            .mobile-links {
+                list-style: none;
+            }
+            
+            .mobile-links li {
+                margin-bottom: 20px;
+            }
+            
+            .mobile-links a {
+                font-size: 1.2rem;
+                font-weight: 500;
+            }
+            
+            .mobile-close {
+                position: absolute;
+                top: 30px;
+                right: 30px;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--dark);
+            }
+            
+            .dark-mode .mobile-close {
+                color: var(--light);
+            }
+            
+            .mobile-menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 998;
+                display: none;
+            }
+            
+            .mobile-menu-overlay.active {
+                display: block;
+            }
+            
+            .timeline:before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                justify-content: flex-start !important;
+                padding-left: 80px !important;
+                padding-right: 0 !important;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content:after,
+            .timeline-item:nth-child(even) .timeline-content:after {
+                left: -10px;
+                right: auto;
+                border-right: 10px solid var(--light);
+                border-left: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-auto-rows: 150px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .contact-form {
+                padding: 30px 20px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Indicateur de progression du défilement -->
+    <div class="scroll-progress">
+        <div class="scroll-progress-bar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Bénin<span>Tourisme</span></a>
+                <ul class="nav-links">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#experiences">Expériences</a></li>
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#itineraires">Itinéraires</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="nav-right">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <div class="mobile-toggle" id="mobileToggle">
+                        
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    
+
+<!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Découvrez le Bénin, terre d'émerveillement</h1><br>
+                
+                <div class="hero-btns">
+                    <a href="#experiences" class="btn">Découvrir nos expériences</a>
+                    <a href="#contact" class="btn btn-outline">Planifier votre voyage</a>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <!-- Section Expériences -->
+    <section id="experiences">
+        <div class="container">
+            <div class="text-center">
+                <p class="section-subtitle">Voyagez autrement</p>
+                <h2>Expériences Uniques</h2>
+            </div>
+            <div class="experience-cards" id="experienceCards">
+                <!-- Les cartes seront générées par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Galerie -->
+    <section class="gallery" id="destinations">
+        <div class="container">
+            <div class="text-center">
+                <p class="section-subtitle">Un patrimoine d'exception</p>
+                <h2>Galerie Époustouflante</h2>
+            </div>
+            <div class="gallery-container" id="galleryContainer">
+                <!-- Les images seront générées par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Section Itinéraires -->
+    <section id="itineraires">
+        <div class="container">
+            <div class="text-center">
+                <p class="section-subtitle">Voyages sur mesure</p>
+                <h2>Itinéraires Coup de Cœur</h2>
+            </div>
+            <div class="timeline" id="timeline">
+                <!-- Les éléments de la timeline seront générés par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Témoignages -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="text-center">
+                <p class="section-subtitle">Ils ont vécu l'expérience</p>
+                <h2>Témoignages</h2>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <!-- Les témoignages seront générés par JavaScript -->
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn" id="prevTestimonial"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn" id="nextTestimonial"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Statistiques -->
+    <section class="stats">
+        <div class="container">
+            <div class="text-center">
+                <h2>Notre Impact</h2>
+                <p>Depuis notre création, nous avons transformé la façon de découvrir le Bénin</p>
+            </div>
+            <div class="stats-container" id="statsContainer">
+                <!-- Les statistiques seront générées par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact">
+        <div class="container">
+            <div class="text-center">
+                <p class="section-subtitle">Commencez votre aventure</p>
+                <h2>Contactez-nous</h2>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">Prénom</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Nom</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Téléphone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="destination">Destination préférée</label>
+                        <select id="destination" name="destination">
+                            <option value="">Sélectionnez une destination</option>
+                            <option value="ouidah">Ouidah</option>
+                            <option value="ganvie">Ganvié</option>
+                            <option value="pendjari">Parc Pendjari</option>
+                            <option value="abomey">Abomey</option>
+                            <option value="cote">Côte sauvage</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Décrivez-nous vos envies de voyage..."></textarea>
+                    </div>
+                    <button type="submit" class="btn">Envoyer la demande</button>
+                    <div class="form-message" id="formMessage"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">Benin Tourisme</div>
+                    <p>Notre agence de tourisme premium vous offre une expérience unique de découverte du Bénin, alliant confort, authenticité et immersion culturelle.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Destinations</h3>
+                    <ul>
+                        <li><a href="#destinations">Ouidah</a></li>
+                        <li><a href="#destinations">Ganvié</a></li>
+                        <li><a href="#destinations">Parc Pendjari</a></li>
+                        <li><a href="#destinations">Abomey</a></li>
+                        <li><a href="#destinations">Côte sauvage</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Agence</h3>
+                    <ul>
+                        <li><a href="#apropos">À propos</a></li>
+                        <li><a href="#experiences">Expériences</a></li>
+                        <li><a href="#itineraires">Itinéraires</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#contact">Devis personnalisé</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Rue des Rois, Ouidah, Bénin</p>
+                    <p><i class="fas fa-phone"></i> +229 60 12 34 56</p>
+                    <p><i class="fas fa-envelope"></i> contact@decouverte-emerveillement.bj</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Benin Tourisme Bénin. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Modal Galerie -->
+    <div class="modal" id="galleryModal">
+        <button class="modal-close" id="modalClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        // Données pour les sections
+        const experiencesData = [
+            {
+                id: 1,
+                title: "Route des esclaves à Ouidah",
+                description: "Parcourez le chemin historique emprunté par les esclaves vers les bateaux négriers, avec un guide expert en histoire africaine.",
+                tag: "history",
+                image: "https://i.pinimg.com/736x/54/c9/2b/54c92bdaa79aebbf65263e3e5be307b3.jpg"
+            },
+            {
+                id: 2,
+                title: "Safari au Parc Pendjari",
+                description: "Partez à la découverte de la faune africaine dans l'un des derniers sanctuaires de vie sauvage d'Afrique de l'Ouest.",
+                tag: "nature",
+                image: "https://i.pinimg.com/736x/0d/a2/ab/0da2ab267477bf051670a7e0e8b7d0a7.jpg"
+            },
+            {
+                id: 3,
+                title: "Venise de l'Afrique à Ganvié",
+                description: "Découvrez la cité lacustre unique au monde, construite sur pilotis au cœur du lac Nokoué.",
+                tag: "culture",
+                image: "https://i.pinimg.com/736x/82/9c/7c/829c7cffb5473cb20c0d7dc4c2175ce2.jpg"
+            },
+            {
+                id: 4,
+                title: "Royaumes d'Abomey",
+                description: "Explorez les palais royaux classés UNESCO et plongez dans l'histoire des rois du Dahomey.",
+                tag: "history",
+                image: "https://i.pinimg.com/736x/f5/39/50/f5395091af3742178e4ce6088dc264b1.jpg"
+            },
+            {
+                id: 5,
+                title: "Cérémonies Vodoun",
+                description: "Assistez à des cérémonies authentiques avec initiation aux traditions spirituelles béninoises.",
+                tag: "culture",
+                image: "https://i.pinimg.com/1200x/41/92/9f/41929f2638fd2307add2a8789ce97d15.jpg"
+            },
+            {
+                id: 6,
+                title: "Plages préservées de la Côte",
+                description: "Détendez-vous sur des plages de sable fin bordées de cocotiers et découvrez la pêche traditionnelle.",
+                tag: "nature",
+                image: "https://i.pinimg.com/736x/35/34/b1/3534b17737eb473fb12aefcaad197ec1.jpg"
+            }
+        ];
+
+        const galleryData = [
+            {
+                id: 1,
+                src: "https://i.pinimg.com/1200x/d8/6d/de/d86dde1a524b94d3907de8ba98a19747.jpg",
+                alt: "Porte du Non-Retour à Ouidah"
+            },
+            {
+                id: 2,
+                src: "https://i.pinimg.com/1200x/f9/0c/1b/f90c1b5170decaf5a389387d91967424.jpg",
+                alt: "Parc National de la Pendjari"
+            },
+            {
+                id: 3,
+                src: "https://i.pinimg.com/1200x/ba/63/ce/ba63ce560c4cc9efaaf6bccec4c3f63b.jpg",
+                alt: "Village lacustre de Ganvié"
+            },
+            {
+                id: 4,
+                src: "https://i.pinimg.com/1200x/69/4b/81/694b81aa0c5bca47dd6d628c1e8eebd2.jpg",
+                alt: "Palais royaux d'Abomey"
+            },
+            {
+                id: 5,
+                src: "https://i.pinimg.com/1200x/56/8e/45/568e45335d12b0e379c3b4b607cda49e.jpg",
+                alt: "Cérémonie Vodoun"
+            },
+            {
+                id: 6,
+                src: "https://i.pinimg.com/1200x/d8/5e/11/d85e1174715b525d1e4e4e60c457d619.jpg",
+                alt: "Plage de la Côte sauvage"
+            },
+            {
+                id: 7,
+                src: "https://i.pinimg.com/736x/df/18/c4/df18c4e118072075391dde0bbcb3c606.jpg",
+                alt: "Marché artisanal"
+            },
+            {
+                id: 8,
+                src: "https://i.pinimg.com/736x/61/60/3e/61603ef9854604c4c805868d5c424a67.jpg",
+                alt: "Coucher de soleil sur le lac"
+            }
+        ];
+
+        const timelineData = [
+            {
+                id: 1,
+                title: "Jour 1-2 : Arrivée à Cotonou & Ouidah",
+                description: "Accueil à l'aéroport, transfert à l'hôtel. Visite de la Route des Esclaves et de la Porte du Non-Retour. Dîner traditionnel avec spectacle de danses locales.",
+                duration: "2 jours"
+            },
+            {
+                id: 2,
+                title: "Jour 3-4 : Abomey & les Royaumes",
+                description: "Route vers Abomey, visite des Palais Royaux classés UNESCO. Rencontre avec les artisans locaux et initiation à l'art du bronze.",
+                duration: "2 jours"
+            },
+            {
+                id: 3,
+                title: "Jour 5-6 : Safari au Parc Pendjari",
+                description: "Safari photo pour observer lions, éléphants, buffles et nombreuses espèces d'antilopes. Nuit en lodge avec vue sur la savane.",
+                duration: "2 jours"
+            },
+            {
+                id: 4,
+                title: "Jour 7-8 : Ganvié & la vie lacustre",
+                description: "Découverte de la cité sur pilotis en pirogue. Rencontre avec les pêcheurs et déjeuner de poissons frais. Retour à Cotonou par la route côtière.",
+                duration: "2 jours"
+            }
+        ];
+
+        const testimonialsData = [
+            {
+                id: 1,
+                name: "Sophie et Marc L.",
+                text: "Un voyage qui a dépassé toutes nos attentes. L'immersion culturelle, les rencontres authentiques et l'organisation impeccable ont fait de ce séjour une expérience inoubliable.",
+                rating: 5,
+                location: "Paris, France",
+                avatar: "https://randomuser.me/api/portraits/women/32.jpg"
+            },
+            {
+                id: 2,
+                name: "Thomas R.",
+                text: "Le safari au Parc Pendjari était extraordinaire. Nos guides étaient d'une compétence rare et nous ont permis d'observer des animaux dans leur habitat naturel. Une expérience unique !",
+                rating: 5,
+                location: "Genève, Suisse",
+                avatar: "https://randomuser.me/api/portraits/men/54.jpg"
+            },
+            {
+                id: 3,
+                name: "Famille Dubois",
+                text: "Voyager avec des enfants n'a jamais été aussi simple. L'agence a su adapter le programme à nos envies et nous a fait découvrir un Bénin authentique et accueillant.",
+                rating: 5,
+                location: "Montréal, Canada",
+                avatar: "https://randomuser.me/api/portraits/women/65.jpg"
+            }
+        ];
+
+        const statsData = [
+            {
+                id: 1,
+                value: "450+",
+                label: "Voyages organisés"
+            },
+            {
+                id: 2,
+                value: "98%",
+                label: "Clients satisfaits"
+            },
+            {
+                id: 3,
+                value: "15",
+                label: "Destinations exclusives"
+            },
+            {
+                id: 4,
+                value: "12",
+                label: "Années d'expérience"
+            }
+        ];
+
+        const mapLocations = {
+            ouidah: {
+                title: "Ouidah",
+                description: "Ancien port négrier, Ouidah est un lieu chargé d'histoire avec la Route des Esclaves et la Porte du Non-Retour. Le musée d'histoire et le Temple des Pythons sont des incontournables.",
+                image: "https://images.unsplash.com/photo-1552465011-b4e30bf7349d?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80"
+            },
+            ganvie: {
+                title: "Ganvié",
+                description: "Surnommée la 'Venise de l'Afrique', cette cité lacustre unique au monde est construite sur pilotis au milieu du lac Nokoué. Découvrez la vie traditionnelle des pêcheurs.",
+                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80"
+            },
+            pendjari: {
+                title: "Parc Pendjari",
+                description: "L'un des derniers sanctuaires de faune d'Afrique de l'Ouest, le parc abrite lions, éléphants, buffles et de nombreuses espèces d'antilopes. Un paradis pour les amateurs de safari.",
+                image: "https://images.unsplash.com/photo-1552465011-b4e30bf7349d?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80"
+            },
+            abomey: {
+                title: "Abomey",
+                description: "Ancienne capitale du Royaume du Dahomey, Abomey abrite des palais royaux classés au patrimoine mondial de l'UNESCO. Découvrez l'histoire fascinante des rois Fon.",
+                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80"
+            },
+            cote: {
+                title: "Côte sauvage",
+                description: "De magnifiques plages de sable fin bordées de cocotiers s'étendent sur des kilomètres. Un lieu idéal pour se détendre après un voyage riche en découvertes.",
+                image: "https://images.unsplash.com/photo-1552465011-b4e30bf7349d?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80"
+            }
+        };
+
+        // DOM Elements
+        const scrollProgressBar = document.querySelector('.scroll-progress-bar');
+        const header = document.querySelector('header');
+        const themeToggle = document.getElementById('themeToggle');
+        const backToTop = document.getElementById('backToTop');
+        const experienceCards = document.getElementById('experienceCards');
+        const galleryContainer = document.getElementById('galleryContainer');
+        const timeline = document.getElementById('timeline');
+        const testimonialTrack = document.getElementById('testimonialTrack');
+        const prevTestimonialBtn = document.getElementById('prevTestimonial');
+        const nextTestimonialBtn = document.getElementById('nextTestimonial');
+        const statsContainer = document.getElementById('statsContainer');
+        const beninMap = document.getElementById('beninMap');
+        const mapInfo = document.getElementById('mapInfo');
+        const mapPoints = document.querySelectorAll('.map-point');
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+        const galleryModal = document.getElementById('galleryModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalClose = document.getElementById('modalClose');
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        const mobileClose = document.getElementById('mobileClose');
+        const mobileLinks = document.querySelectorAll('.mobile-links a');
+
+        // Variables globales
+        let currentTestimonial = 0;
+        let isDarkMode = false;
+
+        // Initialisation au chargement de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Générer les cartes d'expériences
+            generateExperienceCards();
+            
+            // Générer la galerie
+            generateGallery();
+            
+            // Générer la timeline
+            generateTimeline();
+            
+            // Générer les témoignages
+            generateTestimonials();
+            
+            // Générer les statistiques
+            generateStats();
+            
+            // Initialiser la carte interactive
+            initMap();
+            
+            // Initialiser les événements
+            initEvents();
+            
+            // Initialiser les animations au défilement
+            initScrollAnimations();
+        });
+
+        // Générer les cartes d'expériences
+        function generateExperienceCards() {
+            experienceCards.innerHTML = '';
+            
+            experiencesData.forEach(exp => {
+                const card = document.createElement('div');
+                card.className = 'experience-card';
+                card.innerHTML = `
+                    <img src="${exp.image}" alt="${exp.title}" class="card-img">
+                    <div class="card-content">
+                        <span class="card-tag ${exp.tag}">${getTagLabel(exp.tag)}</span>
+                        <h3>${exp.title}</h3>
+                        <p>${exp.description}</p>
+                        <a href="#contact" class="btn btn-outline">Découvrir</a>
+                    </div>
+                `;
+                experienceCards.appendChild(card);
+            });
+        }
+
+        // Obtenir le label du tag
+        function getTagLabel(tag) {
+            switch(tag) {
+                case 'nature': return 'Nature';
+                case 'culture': return 'Culture';
+                case 'history': return 'Histoire';
+                default: return 'Découverte';
+            }
+        }
+
+        // Générer la galerie
+        function generateGallery() {
+            galleryContainer.innerHTML = '';
+            
+            galleryData.forEach(item => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="${item.src}" alt="${item.alt}" data-id="${item.id}">
+                `;
+                
+                galleryItem.addEventListener('click', () => {
+                    openGalleryModal(item.src, item.alt);
+                });
+                
+                galleryContainer.appendChild(galleryItem);
+            });
+        }
+
+        // Ouvrir la modal de la galerie
+        function openGalleryModal(src, alt) {
+            modalImage.src = src;
+            modalImage.alt = alt;
+            galleryModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Fermer la modal de la galerie
+        modalClose.addEventListener('click', () => {
+            galleryModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        galleryModal.addEventListener('click', (e) => {
+            if (e.target === galleryModal) {
+                galleryModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Générer la timeline
+        function generateTimeline() {
+            timeline.innerHTML = '';
+            
+            timelineData.forEach((item, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                timelineItem.innerHTML = `
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                        <div class="duration">${item.duration}</div>
+                    </div>
+                `;
+                timeline.appendChild(timelineItem);
+            });
+        }
+
+        // Générer les témoignages
+        function generateTestimonials() {
+            testimonialTrack.innerHTML = '';
+            
+            testimonialsData.forEach(testimonial => {
+                const slide = document.createElement('div');
+                slide.className = 'testimonial-slide';
+                slide.innerHTML = `
+                    <div class="testimonial-rating">
+                        ${getRatingStars(testimonial.rating)}
+                    </div>
+                    <p>"${testimonial.text}"</p>
+                    <div class="testimonial-author">
+                        <img src="${testimonial.avatar}" alt="${testimonial.name}">
+                        <div>
+                            <h4>${testimonial.name}</h4>
+                            <p>${testimonial.location}</p>
+                        </div>
+                    </div>
+                `;
+                testimonialTrack.appendChild(slide);
+            });
+            
+            updateTestimonialSlider();
+        }
+
+        // Obtenir les étoiles de notation
+        function getRatingStars(rating) {
+            let stars = '';
+            for (let i = 0; i < 5; i++) {
+                if (i < rating) {
+                    stars += '<i class="fas fa-star"></i>';
+                } else {
+                    stars += '<i class="far fa-star"></i>';
+                }
+            }
+            return stars;
+        }
+
+        // Mettre à jour le slider de témoignages
+        function updateTestimonialSlider() {
+            testimonialTrack.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+        }
+
+        // Gestion des boutons de navigation des témoignages
+        prevTestimonialBtn.addEventListener('click', () => {
+            currentTestimonial = (currentTestimonial > 0) ? currentTestimonial - 1 : testimonialsData.length - 1;
+            updateTestimonialSlider();
+        });
+
+        nextTestimonialBtn.addEventListener('click', () => {
+            currentTestimonial = (currentTestimonial < testimonialsData.length - 1) ? currentTestimonial + 1 : 0;
+            updateTestimonialSlider();
+        });
+
+        // Générer les statistiques
+        function generateStats() {
+            statsContainer.innerHTML = '';
+            
+            statsData.forEach(stat => {
+                const statItem = document.createElement('div');
+                statItem.className = 'stat-item';
+                statItem.innerHTML = `
+                    <div class="stat-number">${stat.value}</div>
+                    <p>${stat.label}</p>
+                `;
+                statsContainer.appendChild(statItem);
+            });
+        }
+
+        // Initialiser la carte interactive
+        function initMap() {
+            mapPoints.forEach(point => {
+                point.addEventListener('click', function() {
+                    const location = this.getAttribute('data-location');
+                    showMapInfo(location, this);
+                });
+            });
+        }
+
+        // Afficher les informations de la carte
+        function showMapInfo(location, element) {
+            const info = mapLocations[location];
+            
+            // Retirer la classe active de tous les points
+            mapPoints.forEach(point => {
+                point.classList.remove('active');
+            });
+            
+            // Ajouter la classe active au point cliqué
+            element.classList.add('active');
+            
+            // Positionner et afficher l'info-bulle
+            const rect = element.getBoundingClientRect();
+            const mapRect = beninMap.getBoundingClientRect();
+            
+            mapInfo.innerHTML = `
+                <h3>${info.title}</h3>
+                <img src="${info.image}" alt="${info.title}" style="width:100%; height:150px; object-fit:cover; margin-bottom:15px; border-radius:4px;">
+                <p>${info.description}</p>
+                <a href="#contact" class="btn" style="margin-top:10px; padding:8px 16px; font-size:0.9rem;">Découvrir</a>
+            `;
+            
+            mapInfo.classList.add('active');
+            
+            // Positionnement de l'info-bulle
+            let left = rect.left - mapRect.left + (rect.width / 2);
+            let top = rect.top - mapRect.top + rect.height + 10;
+            
+            // Ajuster si l'info-bulle dépasse à droite
+            if (left + 300 > mapRect.width) {
+                left = mapRect.width - 310;
+            }
+            
+            // Ajuster si l'info-bulle dépasse en haut
+            if (top + mapInfo.offsetHeight > mapRect.height) {
+                top = rect.top - mapRect.top - mapInfo.offsetHeight - 10;
+            }
+            
+            mapInfo.style.left = `${left}px`;
+            mapInfo.style.top = `${top}px`;
+        }
+
+        // Fermer l'info-bulle de la carte en cliquant ailleurs
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.map-point') && !e.target.closest('.map-info')) {
+                mapInfo.classList.remove('active');
+                mapPoints.forEach(point => {
+                    point.classList.remove('active');
+                });
+            }
+        });
+
+        // Initialiser les événements
+        function initEvents() {
+            // Changement de thème
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // Gestion du défilement
+            window.addEventListener('scroll', handleScroll);
+            
+            // Back to top
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Formulaire de contact
+            contactForm.addEventListener('submit', handleFormSubmit);
+            
+            // Menu mobile
+            mobileToggle.addEventListener('click', openMobileMenu);
+            mobileClose.addEventListener('click', closeMobileMenu);
+            mobileOverlay.addEventListener('click', closeMobileMenu);
+            
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+            
+            // Fermer la modal avec la touche Échap
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    galleryModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Basculer entre thème clair et sombre
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            
+            const icon = themeToggle.querySelector('i');
+            if (isDarkMode) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+            
+            // Sauvegarder la préférence
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+
+        // Gérer le défilement
+        function handleScroll() {
+            // Indicateur de progression
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            scrollProgressBar.style.width = scrolled + '%';
+            
+            // Header au défilement
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Bouton back to top
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+            
+            // Animations au défilement
+            triggerScrollAnimations();
+        }
+
+        // Initialiser les animations au défilement
+        function initScrollAnimations() {
+            // Observer pour les animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observer les éléments à animer
+            const elementsToAnimate = document.querySelectorAll('.experience-card, .gallery-item, .timeline-item, .stat-item');
+            elementsToAnimate.forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Déclencher les animations au défilement
+        function triggerScrollAnimations() {
+            // Cette fonction peut être étendue pour des animations plus complexes
+        }
+
+        // Gérer la soumission du formulaire
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            // Récupérer les valeurs du formulaire
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            
+            // Validation simple
+            if (!data.firstName || !data.lastName || !data.email) {
+                showFormMessage('Veuillez remplir tous les champs obligatoires.', 'error');
+                return;
+            }
+            
+            if (!validateEmail(data.email)) {
+                showFormMessage('Veuillez entrer une adresse email valide.', 'error');
+                return;
+            }
+            
+            // Simuler l'envoi (dans un cas réel, on enverrait au serveur)
+            showFormMessage('Votre demande a été envoyée avec succès ! Nous vous contacterons dans les plus brefs délais.', 'success');
+            contactForm.reset();
+            
+            // Envoyer les données (simulation)
+            setTimeout(() => {
+                console.log('Données du formulaire:', data);
+            }, 1000);
+        }
+
+        // Valider l'email
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Afficher les messages du formulaire
+        function showFormMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.className = `form-message ${type}`;
+            
+            setTimeout(() => {
+                formMessage.classList.remove('success', 'error');
+                formMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        // Ouvrir le menu mobile
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            mobileOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Fermer le menu mobile
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Charger la préférence de thème depuis le localStorage
+        function loadThemePreference() {
+            const savedDarkMode = localStorage.getItem('darkMode');
+            
+            if (savedDarkMode !== null) {
+                isDarkMode = savedDarkMode === 'true';
+                document.body.classList.toggle('dark-mode', isDarkMode);
+                
+                const icon = themeToggle.querySelector('i');
+                if (isDarkMode) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            }
+        }
+
+        // Charger la préférence de thème au chargement
+        loadThemePreference();
+    </script>
+</body>
+</html>
